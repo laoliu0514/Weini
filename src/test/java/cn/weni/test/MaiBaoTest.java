@@ -37,8 +37,8 @@ public class MaiBaoTest {
 	@Test
 	public void test01(){
 		    Map<String, Object> params = new HashMap<>();
-	        params.put("startTime","2017-11-19 23:30:00");
-	        params.put("endTime","2017-11-20 23:30:00");
+	        params.put("startTime","2017-10-21 23:35:00");
+	        params.put("endTime","2017-11-21 23:30:00");
 	        params.put("status",2);
 
 	        Map<String, Object> reqData = new HashMap<>();
