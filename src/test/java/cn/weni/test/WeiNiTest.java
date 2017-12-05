@@ -48,14 +48,14 @@ public class WeiNiTest {
 	
 	
 	public CloseableHttpResponse getHttpResponse(String url, String interfacename, Map<String, Object> map) {
-		String parenter = "2227";
+		String parenter = "8554";
 		// 要发送的json内容即各接口的请求数据
 		String content = JsonUtils.objectToJson(map);
 		System.out.println(content);
 		// token=md5(key+date+interfacename+content) date: 当前日期(格式为yyyy-MM-dd)
 		// key:由唯妮供应链平台分配的密钥 content:消息体
 		String currentTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-		String key = "0e30200492d011e78d5900163e00073b" + currentTime + interfacename + content;
+		String key = "15508819da004b8d8e7af91915b086e6" + currentTime + interfacename + content;
 		 System.out.println(key);
 		String token = DigestUtils.md5DigestAsHex(key.getBytes());
 		 System.out.println(token);
@@ -64,8 +64,8 @@ public class WeiNiTest {
 		// 拼接uri
 		URI uri = null;
 		try {
-			uri = new URIBuilder().setScheme("http").setHost("121.41.84.251").setPort(9090)
-//					uri = new URIBuilder().setScheme("http").setHost("vip.nysochina.com")
+//			uri = new URIBuilder().setScheme("http").setHost("121.41.84.251").setPort(9090)
+					uri = new URIBuilder().setScheme("http").setHost("vip.nysochina.com")
 					.setPath(url).build();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
@@ -101,14 +101,15 @@ public class WeiNiTest {
 	public void test01() {
 		Map<String, Object> map = new HashMap<>();
 		// 查询修改开始时间(修改时间跨度不能大于一天)。格式:yyyy-MM-dd HH:mm:ss
-		map.put("StartModified", "2017-11-10 16:00:00");
+		map.put("StartModified", "2017-11-27 16:20:00");
 		// 查询修改结束时间，必须大于修改开始时间(修改时间跨度不能大于一天)，格式:yyyy-MM-dd HH:mm:ss。
-		map.put("EndModified", "2017-11-10 23:59:59");
+		map.put("EndModified", "2017-11-27 16:40:59");
 		// 交易状态，默认查询所有交易状态的数据，除了默认值外每次只能查询一种状态。
 		// TRADE_STATUS_DELIVERY_WAIT 待发货
 		// TRADE_STATUS_DELIVERY_FINISHED 已发货
 		// TRADE_STATUS_FINISHED 已完成
 		map.put("Status", "TRADE_STATUS_DELIVERY_WAIT");
+//		map.put("Status", "TRADE_STATUS_DELIVERY_FINISHED");
 		// 页码：供调起方分页查询。为防止漏单页码需按倒序获取数据
 		map.put("PageNo", 1);
 		// 每页条数:最大100
